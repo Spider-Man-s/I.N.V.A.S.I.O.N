@@ -561,8 +561,8 @@ namespace BNG {
 
             rigid.mass = initialMass;
 
-            rigid.drag = initialDrag;
-            rigid.angularDrag = initialAngularDrag;
+            rigid.linearDamping = initialDrag;
+            rigid.angularDamping = initialAngularDrag;
             rigid.useGravity = usedGravity;
             rigid.isKinematic = wasKinematic;
             rigid.interpolation = initialInterpolationMode;
@@ -575,8 +575,8 @@ namespace BNG {
         public virtual void SetInitialRigidbodyProperties() {
             if (rigid) {
                 initialMass = rigid.mass;
-                initialDrag = rigid.drag;
-                initialAngularDrag = rigid.angularDrag;
+                initialDrag = rigid.linearDamping;
+                initialAngularDrag = rigid.angularDamping;
                 usedGravity = rigid.useGravity;
                 wasKinematic = rigid.isKinematic && !ForceDisableKinematicOnDrop;
                 initialInterpolationMode = rigid.interpolation;
@@ -893,7 +893,7 @@ namespace BNG {
                     Vector3 positionDelta = grabberPosition - transform.position;
 
                     // Move towards hand using velocity
-                    SetRigidVelocity(Vector3.MoveTowards(rigid.velocity, (positionDelta * MoveVelocityForce) * Time.fixedDeltaTime, 1f));
+                    SetRigidVelocity(Vector3.MoveTowards(rigid.linearVelocity, (positionDelta * MoveVelocityForce) * Time.fixedDeltaTime, 1f));
 
                     // Updated :
                     moveRotation(Quaternion.RotateTowards(transform.rotation, remoteRotation, Time.fixedDeltaTime * GrabSpeed * 90f));
@@ -1167,7 +1167,7 @@ namespace BNG {
                 return;
             }
             else {
-                rigid.velocity = newVelocity;
+                rigid.linearVelocity = newVelocity;
             }
         }
 
@@ -1195,7 +1195,7 @@ namespace BNG {
                 Vector3 positionDelta = destination - transform.position;
 
                 // Move towards hand using velocity
-                SetRigidVelocity(Vector3.MoveTowards(rigid.velocity, (positionDelta * MoveVelocityForce) * Time.fixedDeltaTime, 1f));
+                SetRigidVelocity(Vector3.MoveTowards(rigid.linearVelocity, (positionDelta * MoveVelocityForce) * Time.fixedDeltaTime, 1f));
             }
             else {
                 // Very close - just move object right where it needs to be and set velocity to 0 so it doesn't overshoot
@@ -1974,7 +1974,7 @@ namespace BNG {
                     // Apply velocity last
                     if (rigid && resetVelocity && droppedBy && AddControllerVelocityOnDrop&& GrabPhysics != GrabPhysics.None) {
                         // Make sure velocity is passed on
-                        Vector3 velocity = droppedBy.GetGrabberAveragedVelocity() + droppedBy.GetComponent<Rigidbody>().velocity;
+                        Vector3 velocity = droppedBy.GetGrabberAveragedVelocity() + droppedBy.GetComponent<Rigidbody>().linearVelocity;
                         Vector3 angularVelocity = droppedBy.GetGrabberAveragedAngularVelocity() + droppedBy.GetComponent<Rigidbody>().angularVelocity;
 
                         if (gameObject.activeSelf) {

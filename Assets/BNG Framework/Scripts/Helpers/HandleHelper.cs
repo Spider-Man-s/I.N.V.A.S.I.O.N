@@ -46,7 +46,7 @@ namespace BNG {
                     transform.localScale = Vector3.one;
 
                     if(!rb.isKinematic) {
-                        rb.velocity = Vector3.zero;
+                        rb.linearVelocity = Vector3.zero;
                         rb.angularVelocity = Vector3.zero;
                     }
                     
