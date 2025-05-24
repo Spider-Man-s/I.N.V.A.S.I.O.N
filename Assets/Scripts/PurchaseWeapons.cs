@@ -87,7 +87,7 @@ public class PurchaseWeapons : MonoBehaviour
             // Set label
             if (upgradeLevel == 1)
             {
-                price = 10000;
+                price = 1000;
                 label.text = "PURCHASE: <color=red>" + price + "</color>";
             }
             else if (upgradeLevel == 2)
