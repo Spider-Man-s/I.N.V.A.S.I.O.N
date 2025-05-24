@@ -4869,9 +4869,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdea428d48e2bb488d33d5f75c39bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeingHeld: 0
+  BeingHeld: 1
   GrabButton: 2
-  Grabtype: 2
+  Grabtype: 1
   GrabPhysics: 0
   GrabMechanic: 0
   GrabSpeed: 4
@@ -4886,7 +4886,7 @@ MonoBehaviour:
   ParentToHands: 0
   ParentHandModel: 1
   SnapHandModel: 1
-  CanBeDropped: 1
+  CanBeDropped: 0
   CanBeSnappedToSnapZone: 1
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
@@ -4915,7 +4915,7 @@ MonoBehaviour:
   ApplyCorrectiveForce: 1
   MoveVelocityForce: 3000
   MoveAngularVelocityForce: 90
-  LastGrabTime: 14.667002
+  LastGrabTime: 0
   LastRemoteGrabTime: 14.5994425
   LastDropTime: 28.898361
   AddControllerVelocityOnDrop: 1
@@ -5042,13 +5042,13 @@ MonoBehaviour:
   MaxRange: 200
   Damage: 25
   FiringMethod: 0
-  ReloadMethod: 3
+  ReloadMethod: 0
   FiringRate: 0.05
   BulletImpactForce: 1000
   InternalAmmo: 0
   MaxInternalAmmo: 10
   AutoChamberRounds: 1
-  MustChamberRounds: 1
+  MustChamberRounds: 0
   AlwaysFireProjectile: 0
   FireProjectileInSlowMo: 1
   SlowMoRateOfFire: 0.3
@@ -5079,7 +5079,7 @@ MonoBehaviour:
   HitFXPrefab: {fileID: 3454612190511497970, guid: fa39ce2ce96bec94b82f2c8124ce3930,
     type: 3}
   GunShotSound: {fileID: 8300000, guid: 727ff3abbdb797f45b714a1795efc4e2, type: 3}
-  GunShotVolume: 0.75
+  GunShotVolume: 0.2
   IsSilenced: 0
   GunShotSilencedSound: {fileID: 8300000, guid: 83dc0287d0634ed4cb587d44b592210c,
     type: 3}

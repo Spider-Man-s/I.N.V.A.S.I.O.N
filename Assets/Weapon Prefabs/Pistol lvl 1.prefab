@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeingHeld: 0
   GrabButton: 2
-  Grabtype: 0
+  Grabtype: 1
   GrabPhysics: 0
   GrabMechanic: 0
   GrabSpeed: 4
@@ -132,7 +132,7 @@ MonoBehaviour:
   ParentToHands: 0
   ParentHandModel: 1
   SnapHandModel: 1
-  CanBeDropped: 1
+  CanBeDropped: 0
   CanBeSnappedToSnapZone: 1
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
@@ -191,13 +191,13 @@ MonoBehaviour:
   MaxRange: 200
   Damage: 25
   FiringMethod: 0
-  ReloadMethod: 3
+  ReloadMethod: 0
   FiringRate: 0.05
   BulletImpactForce: 1000
   InternalAmmo: 0
   MaxInternalAmmo: 10
   AutoChamberRounds: 1
-  MustChamberRounds: 1
+  MustChamberRounds: 0
   AlwaysFireProjectile: 0
   FireProjectileInSlowMo: 1
   SlowMoRateOfFire: 0.3
@@ -228,7 +228,7 @@ MonoBehaviour:
   HitFXPrefab: {fileID: 3454612190511497970, guid: fa39ce2ce96bec94b82f2c8124ce3930,
     type: 3}
   GunShotSound: {fileID: 8300000, guid: 727ff3abbdb797f45b714a1795efc4e2, type: 3}
-  GunShotVolume: 0.75
+  GunShotVolume: 0.2
   IsSilenced: 0
   GunShotSilencedSound: {fileID: 8300000, guid: 83dc0287d0634ed4cb587d44b592210c,
     type: 3}
