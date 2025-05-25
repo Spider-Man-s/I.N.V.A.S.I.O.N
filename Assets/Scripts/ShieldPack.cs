@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections;
-
-public class HealthPack : MonoBehaviour
+public class ShieldPack : MonoBehaviour
 {
-    public int healAmount = 25;
+    public int shieldAmount = 25;
     public AudioClip pickupSound;
     private float respawnTime = 3f;
 
@@ -23,8 +22,8 @@ public class HealthPack : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            GameStats.PlayerHealth = Mathf.Min(GameStats.PlayerHealth + healAmount, 100);
 
+            GameStats.PlayerShields = Mathf.Min(GameStats.PlayerShields + shieldAmount, 100);
 
             if (pickupSound != null)
             {

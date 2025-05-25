@@ -10,12 +10,16 @@ public class ArmUIManager : MonoBehaviour
 
     [SerializeField] private MicroBar hpBar;
 
+    [SerializeField] private MicroBar shieldBar;
 
 
     void Start()
     {
         hpBar.Initialize(GameStats.MaxHealth);
         hpBar.UpdateBar(GameStats.PlayerHealth);
+
+        shieldBar.Initialize(GameStats.MaxHealth);
+        shieldBar.UpdateBar(GameStats.PlayerShields);
     }
 
     void Update()
@@ -23,28 +27,32 @@ public class ArmUIManager : MonoBehaviour
         pointsText.text = GameStats.Score.ToString();
         keysText.text = "Keys: " + GameStats.KeysFound + "/4";
         hpBar.UpdateBar(GameStats.PlayerHealth);
+        shieldBar.UpdateBar(GameStats.PlayerShields);
 
-        if (Input.GetKeyDown(KeyCode.F))
+        /* if (Input.GetKeyDown(KeyCode.F))
+         {
+             TakeDamage(10);
+         }
+
+         if (Input.GetKeyDown(KeyCode.G))
+         {
+             Heal(10);
+         }
+ */
+    }
+
+    /*
+        void TakeDamage(int amount)
         {
-            TakeDamage(10);
+            GameStats.PlayerHealth -= amount;
+            GameStats.PlayerHealth = Mathf.Max(GameStats.PlayerHealth, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        void Heal(int amount)
         {
-            Heal(10);
+            GameStats.PlayerHealth += amount;
+            GameStats.PlayerHealth = Mathf.Min(GameStats.PlayerHealth, GameStats.MaxHealth);
         }
 
-    }
-
-    void TakeDamage(int amount)
-    {
-        GameStats.PlayerHealth -= amount;
-        GameStats.PlayerHealth = Mathf.Max(GameStats.PlayerHealth, 0);
-    }
-
-    void Heal(int amount)
-    {
-        GameStats.PlayerHealth += amount;
-        GameStats.PlayerHealth = Mathf.Min(GameStats.PlayerHealth, GameStats.MaxHealth);
-    }
+        */
 }
