@@ -57,9 +57,6 @@ namespace BNG
         [Tooltip("If true GripAmount, PointAmount, and ThumbAmount will be retrieved from the InputBridge. Set to false if you want to set these values yourself.")]
         public bool ReadControllerInputs = true;
 
-        public GameObject newItemForProject;
-        private bool firstTime = true;
-
         [Header("Shown for Debug : ")]
         /// <summary>
         /// 0 = Open Hand, 1 = Full Grip
@@ -266,11 +263,6 @@ namespace BNG
                 }
                 else if (grabber.HeldGrabbable != null && !GameObject.ReferenceEquals(grabber.HeldGrabbable.gameObject, PreviousHeldObject))
                 {
-                    if (firstTime)
-                    {
-                        OnGrabChange(newItemForProject);
-                        firstTime = false;
-                    }
                     OnGrabChange(grabber.HeldGrabbable.gameObject);
                 }
             }

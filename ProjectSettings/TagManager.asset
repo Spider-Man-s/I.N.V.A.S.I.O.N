@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Fire
+  - ufo
   layers:
   - Default
   - TransparentFX

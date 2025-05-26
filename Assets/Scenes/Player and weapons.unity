@@ -1414,6 +1414,11 @@ PrefabInstance:
       propertyPath: newItemForProject
       value: 
       objectReference: {fileID: 457982043}
+    - target: {fileID: 6339670902795989071, guid: 9f87e785e9ac9c14bb8dc5718f4378d0,
+        type: 3}
+      propertyPath: EquipGrabbableOnStart
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
