@@ -3,6 +3,10 @@ using UnityEngine.UI;
 
 public class EnemyHealthBar : MonoBehaviour
 {
+    [Header("Death Settings")]
+    public GameObject keyPrefab; // Key_A prefab
+    public bool destroyOnDeath = true;
+
     [Header("Health Bar Settings")]
     public Slider healthSlider;
     public Image fillImage;
@@ -70,9 +74,28 @@ public class EnemyHealthBar : MonoBehaviour
 
     void OnEnemyDied()
     {
-        // Ovo će biti pozvan kada protivnik umre
         Debug.Log("Enemy died!");
 
-        // Ovdje ćemo dodati animaciju smrti u sljedećem koraku
+        // Spawn Key_A na poziciji enemy-ja
+        if (keyPrefab != null)
+        {
+            Vector3 spawnPosition = transform.position;
+            Quaternion spawnRotation = transform.rotation;
+
+            GameObject spawnedKey = Instantiate(keyPrefab, spawnPosition, spawnRotation);
+
+            Debug.Log("Key spawned at enemy position!");
+        }
+        else
+        {
+            Debug.Log("Key Prefab not assigned!");
+        }
+
+        // Uništi enemy objekt
+        if (destroyOnDeath)
+        {
+            // Kratka pauza da se vidi što se događa
+            Destroy(gameObject, 0.5f);
+        }
     }
 }
