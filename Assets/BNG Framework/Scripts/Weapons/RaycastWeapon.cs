@@ -611,6 +611,11 @@ namespace BNG {
         // Hit something without Raycast. Apply damage, apply FX, etc.
         public virtual void OnRaycastHit(RaycastHit hit) {
 
+            // DEBUG
+
+            Debug.Log($"Hit object: {hit.collider.name}");
+            Debug.Log($"Hit object tag: {hit.collider.tag}");
+
             ApplyParticleFX(hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal), hit.collider);
 
             // push object if rigidbody
@@ -628,6 +633,13 @@ namespace BNG {
                 if (onDealtDamageEvent != null) {
                     onDealtDamageEvent.Invoke(Damage);
                 }
+            }
+
+            //NOVI KOD:
+            EnemyController enemyController = hit.collider.GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+                enemyController.TakeDamage(Damage);
             }
 
             // Call event

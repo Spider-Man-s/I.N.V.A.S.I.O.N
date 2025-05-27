@@ -10,7 +10,7 @@ public class Door1 : MonoBehaviour
     public float triggerDistance = 2f;
 
     [Header("Player Reference")]
-    public Transform playerTransform; // Povežite XR Rig ovdje
+    public Transform playerTransform; // XR Rig 
 
     private bool isPlayerNear = false;
     private bool isDoorOpen = false;

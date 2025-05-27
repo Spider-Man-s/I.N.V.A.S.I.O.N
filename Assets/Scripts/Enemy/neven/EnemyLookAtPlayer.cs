@@ -90,7 +90,7 @@ public class EnemyLookAtPlayer : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 
-        // Zelena linija prema igraču ako ga vidi
+        // Zelena linija prema igracu ako ga vidi
         if (player != null && canSeePlayer)
         {
             Gizmos.color = Color.green;
