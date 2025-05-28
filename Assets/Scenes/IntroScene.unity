@@ -5152,12 +5152,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 622233119}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &625090317 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3044703715389404062, guid: 9f87e785e9ac9c14bb8dc5718f4378d0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1911395667}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &628845523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8682,10 +8676,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1911395673}
-  gravity: {fileID: 625090317}
   abductHeight: 100
   pullSpeed: 4
-  sceneToLoad: Player and weapons
+  sceneToLoad: InvasionApp
 --- !u!65 &941564470
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17555,7 +17548,7 @@ PrefabInstance:
     - target: {fileID: 4916726048760973915, guid: 9f87e785e9ac9c14bb8dc5718f4378d0,
         type: 3}
       propertyPath: ForceStartXRInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4916726048866451616, guid: 9f87e785e9ac9c14bb8dc5718f4378d0,
         type: 3}

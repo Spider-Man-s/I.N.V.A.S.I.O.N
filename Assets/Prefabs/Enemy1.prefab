@@ -1211,6 +1211,8 @@ GameObject:
   - component: {fileID: 2697822216009262744}
   - component: {fileID: 4909138759992993608}
   - component: {fileID: 3621202306986969514}
+  - component: {fileID: 552000463676727443}
+  - component: {fileID: 4354787516473348030}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -1296,6 +1298,63 @@ MonoBehaviour:
   hp: 0
   score: 0
   enemyPrefab: {fileID: 0}
+--- !u!136 &552000463676727443
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019671188999210914}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.599366
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.799683, z: 0}
+--- !u!114 &4354787516473348030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019671188999210914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6de38f13d6b1443b2c5a5a20ac08d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  SelfDestruct: 0
+  SelfDestructDelay: 0.1
+  SpawnOnDeath: {fileID: 0}
+  ActivateGameObjectsOnDeath: []
+  DeactivateGameObjectsOnDeath: []
+  DeactivateCollidersOnDeath: []
+  DestroyOnDeath: 1
+  DropOnDeath: 1
+  DestroyDelay: 0
+  Respawn: 0
+  RespawnTime: 10
+  RemoveBulletHolesOnDeath: 1
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5389906315622939522
 GameObject:
   m_ObjectHideFlags: 0

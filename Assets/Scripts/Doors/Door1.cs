@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Door1 : MonoBehaviour
 {
+    /*
     [Header("Door Settings")]
     public Animator doorAnimator;
     public string openTrigger = "OpenDoor";
@@ -67,4 +68,5 @@ public class Door1 : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, triggerDistance);
     }
+    */
 }
