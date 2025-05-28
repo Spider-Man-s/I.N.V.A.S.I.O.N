@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BNG {
+namespace BNG
+{
 
     /// <summary>
     /// An example hand controller that sets animation values depending on Grabber state
     /// </summary>
-    public class HandController : MonoBehaviour {
+    public class HandController : MonoBehaviour
+    {
 
         [Header("Setup : ")]
         [Tooltip("HandController parent will be set to this on Start if specified")]
@@ -76,7 +78,7 @@ namespace BNG {
         [Range(0f, 1f)]
         public float ThumbAmount;
         private float _prevThumb;
-        
+
         // Raw input values
         private bool _thumbIsNear = false;
         private bool _indexIsNear = false;
@@ -90,47 +92,58 @@ namespace BNG {
         Rigidbody rigid;
         Transform offsetTransform;
 
-        Vector3 offsetPosition {
-            get {
-                if(offset) {
+        Vector3 offsetPosition
+        {
+            get
+            {
+                if (offset)
+                {
                     return offset.OffsetPosition;
                 }
                 return Vector3.zero;
             }
         }
 
-        Vector3 offsetRotation {
-            get {
-                if (offset) {
+        Vector3 offsetRotation
+        {
+            get
+            {
+                if (offset)
+                {
                     return offset.OffsetRotation;
                 }
                 return Vector3.zero;
             }
         }
 
-        void Start() {
+        void Start()
+        {
 
             rigid = GetComponent<Rigidbody>();
             offset = GetComponent<ControllerOffsetHelper>();
             offsetTransform = new GameObject("OffsetHelper").transform;
             offsetTransform.parent = transform;
 
-            if (HandAnchor) {
+            if (HandAnchor)
+            {
                 transform.parent = HandAnchor;
                 offsetTransform.parent = HandAnchor;
 
-                if (ResetHandAnchorPosition) {
+                if (ResetHandAnchorPosition)
+                {
                     transform.localPosition = offsetPosition;
                     transform.localEulerAngles = offsetRotation;
                 }
             }
-            
-            if(grabber == null) {
+
+            if (grabber == null)
+            {
                 grabber = GetComponentInChildren<Grabber>();
             }
 
             // Subscribe to grab / release events
-            if(grabber != null) {
+            if (grabber != null)
+            {
                 grabber.onAfterGrabEvent.AddListener(OnGrabberGrabbed);
                 grabber.onReleaseEvent.AddListener(OnGrabberReleased);
             }
@@ -141,26 +154,32 @@ namespace BNG {
             input = InputBridge.Instance;
         }
 
-        public void Update() {
+        public void Update()
+        {
 
             CheckForGrabChange();
 
             // Set Hand state according to InputBridge
-            if(ReadControllerInputs) {
+            if (ReadControllerInputs)
+            {
                 UpdateFromInputs();
             }
-            
+
             // If a handpose override is specified, we can skip checking grabbables and idle state and go straight to updating hand pose
-            if(HandPoseOverride != null) {
+            if (HandPoseOverride != null)
+            {
                 UpdateHandPoser();
             }
             // Holding something - update the appropriate component
-            else if (HoldingObject()) {
-                if(UseBlending) {
+            else if (HoldingObject())
+            {
+                if (UseBlending)
+                {
 
                     bool adjustLive = true;
                     // Useful for testing
-                    if(adjustLive) {
+                    if (adjustLive)
+                    {
                         poseBlender.SetIndexBlend(grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMin, grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMax);
                         poseBlender.SetThumbBlend(grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMin, grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMax);
                     }
@@ -168,66 +187,82 @@ namespace BNG {
                     // We can use Idle State for blending since it uses the pose blender
                     UpdateHandPoserBlendState();
                 }
-                else {
+                else
+                {
                     UpdateHeldObjectState();
                 }
-                
+
             }
             // Lastly switch to idle state
-            else {
+            else
+            {
                 UpdateIdleState();
             }
         }
 
-        public virtual void UpdateHeldObjectState() {
+        public virtual void UpdateHeldObjectState()
+        {
             // Holding Animator Grabbable
-            if (IsAnimatorGrabbable()) {
+            if (IsAnimatorGrabbable())
+            {
                 UpdateAnimimationStates();
             }
             // Holding Hand Poser Grabbable
-            else if (IsHandPoserGrabbable()) {                
+            else if (IsHandPoserGrabbable())
+            {
                 UpdateHandPoser();
             }
             // Holding Auto Poser Grabbable
-            else if (IsAutoPoserGrabbable()) {
+            else if (IsAutoPoserGrabbable())
+            {
                 //EnableAutoPoser();
             }
         }
 
-        public virtual void UpdateIdleState() {
+        public virtual void UpdateIdleState()
+        {
             // Not holding something - update the idle state
-            if (IdlePoseType == HandPoserType.Animator) {
+            if (IdlePoseType == HandPoserType.Animator)
+            {
                 UpdateAnimimationStates();
             }
-            else if (IdlePoseType == HandPoserType.HandPoser) {
+            else if (IdlePoseType == HandPoserType.HandPoser)
+            {
                 //UpdateHandPoser();
                 UpdateHandPoserIdleState();
 
             }
-            else if (IdlePoseType == HandPoserType.AutoPoser) {
+            else if (IdlePoseType == HandPoserType.AutoPoser)
+            {
                 EnableAutoPoser(true);
             }
         }
 
         public GameObject PreviousHeldObject;
 
-        public virtual bool HoldingObject() {
+        public virtual bool HoldingObject()
+        {
 
-            if(grabber != null && grabber.HeldGrabbable != null) {
+            if (grabber != null && grabber.HeldGrabbable != null)
+            {
                 return true;
             }
 
             return false;
         }
 
-        public virtual void CheckForGrabChange() {
-            if(grabber != null) {
+        public virtual void CheckForGrabChange()
+        {
+            if (grabber != null)
+            {
 
                 // Check for null object but no animator enabled
-                if(grabber.HeldGrabbable == null && PreviousHeldObject != null) {                    
+                if (grabber.HeldGrabbable == null && PreviousHeldObject != null)
+                {
                     OnGrabDrop();
                 }
-                else if(grabber.HeldGrabbable != null && !GameObject.ReferenceEquals(grabber.HeldGrabbable.gameObject, PreviousHeldObject)) {
+                else if (grabber.HeldGrabbable != null && !GameObject.ReferenceEquals(grabber.HeldGrabbable.gameObject, PreviousHeldObject))
+                {
                     OnGrabChange(grabber.HeldGrabbable.gameObject);
                 }
             }
@@ -235,44 +270,55 @@ namespace BNG {
 
         public bool UseBlending = false;
 
-        public virtual void OnGrabChange(GameObject newlyHeldObject) {
+        public virtual void OnGrabChange(GameObject newlyHeldObject)
+        {
 
             // Update Component state if the held object has changed
-            if(HoldingObject()) {
+            if (HoldingObject())
+            {
 
                 // Switch components based on held object properties
                 // Hand Pose Overrides all states
-                if(HandPoseOverride != null) {
+                if (HandPoseOverride != null)
+                {
                     // Do nothing
                 }
                 // Animator
-                else if (grabber.HeldGrabbable.handPoseType == HandPoseType.AnimatorID) {
+                else if (grabber.HeldGrabbable.handPoseType == HandPoseType.AnimatorID)
+                {
                     EnableHandAnimator();
                 }
                 // Auto Poser - Once
-                else if (grabber.HeldGrabbable.handPoseType == HandPoseType.AutoPoseOnce) {
+                else if (grabber.HeldGrabbable.handPoseType == HandPoseType.AutoPoseOnce)
+                {
                     EnableAutoPoser(false);
                 }
                 // Auto Poser - Continuous
-                else if (grabber.HeldGrabbable.handPoseType == HandPoseType.AutoPoseContinuous) {
+                else if (grabber.HeldGrabbable.handPoseType == HandPoseType.AutoPoseContinuous)
+                {
                     EnableAutoPoser(true);
                 }
                 // Hand Poser
-                else if (grabber.HeldGrabbable.handPoseType == HandPoseType.HandPose) {
+                else if (grabber.HeldGrabbable.handPoseType == HandPoseType.HandPose)
+                {
                     // If we have a valid hand pose use it, otherwise fall back to a default closed pose
-                    if (grabber.HeldGrabbable.SelectedHandPose != null) {
+                    if (grabber.HeldGrabbable.SelectedHandPose != null)
+                    {
                         EnableHandPoser();
 
                         // Make sure blender isn't active by default
-                        if(poseBlender != null) {
+                        if (poseBlender != null)
+                        {
                             poseBlender.UpdatePose = false;
                         }
 
-                        if(handPoser != null) {
-                            handPoser.CurrentPose = grabber.HeldGrabbable.SelectedHandPose;                            
+                        if (handPoser != null)
+                        {
+                            handPoser.CurrentPose = grabber.HeldGrabbable.SelectedHandPose;
 
                             // Use blending if index or thumb isnt default
-                            if(grabber.HeldGrabbable.ActiveGrabPoint != null && (grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMin != 0 || grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMax != 0)) {
+                            if (grabber.HeldGrabbable.ActiveGrabPoint != null && (grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMin != 0 || grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMax != 0))
+                            {
 
                                 UseBlending = true;
 
@@ -290,7 +336,8 @@ namespace BNG {
                             }
                         }
                     }
-                    else {
+                    else
+                    {
                         // Debug.Log("No Selected Hand Pose was found.");
                     }
                 }
@@ -302,26 +349,32 @@ namespace BNG {
         /// <summary>
         /// Dropped our held item - nothing currently in our hands
         /// </summary>
-        public virtual void OnGrabDrop() {
+        public virtual void OnGrabDrop()
+        {
 
             // Should we use auto pose when nothing in the hand?
-            if (IdlePoseType == HandPoserType.AutoPoser) {
+            if (IdlePoseType == HandPoserType.AutoPoser)
+            {
                 EnableAutoPoser(true);
             }
-            else if (IdlePoseType == HandPoserType.HandPoser) {
+            else if (IdlePoseType == HandPoserType.HandPoser)
+            {
                 DisableAutoPoser();
-                if(handPoser != null) {
+                if (handPoser != null)
+                {
                     handPoser.ResetAnimationState();
-                    
+
                     // Reset pose blender if was previously in use
-                    if (UseBlending && poseBlender != null && poseBlender.UpdatePose) {
+                    if (UseBlending && poseBlender != null && poseBlender.UpdatePose)
+                    {
                         // Set up the blend to use some default poses
                         poseBlender.Pose1 = GetDefaultOpenPose();
                         poseBlender.Pose2 = GetDefaultClosedPose();
                     }
                 }
             }
-            else if (IdlePoseType == HandPoserType.Animator) {
+            else if (IdlePoseType == HandPoserType.Animator)
+            {
                 DisablePoseBlender();
                 EnableHandAnimator();
                 DisableAutoPoser();
@@ -329,15 +382,18 @@ namespace BNG {
 
             // Reset blending status
             UseBlending = false;
-            if(poseBlender) {
+            if (poseBlender)
+            {
                 poseBlender.ResetBlendRatios();
             }
 
             PreviousHeldObject = null;
-        }       
+        }
 
-        public virtual void SetHandAnimator() {
-            if (HandAnimator == null || !HandAnimator.gameObject.activeInHierarchy) {
+        public virtual void SetHandAnimator()
+        {
+            if (HandAnimator == null || !HandAnimator.gameObject.activeInHierarchy)
+            {
                 HandAnimator = GetComponentInChildren<Animator>();
             }
         }
@@ -345,10 +401,12 @@ namespace BNG {
         /// <summary>
         /// Update GripAmount, PointAmount, and ThumbAmount based raw input from InputBridge
         /// </summary>
-        public virtual void UpdateFromInputs() {
+        public virtual void UpdateFromInputs()
+        {
 
             // Grabber may have been deactivated
-            if (grabber == null || !grabber.isActiveAndEnabled) {
+            if (grabber == null || !grabber.isActiveAndEnabled)
+            {
                 grabber = GetComponentInChildren<Grabber>();
                 GripAmount = 0;
                 PointAmount = 0;
@@ -357,13 +415,15 @@ namespace BNG {
             }
 
             // Update raw values based on hand side
-            if (grabber.HandSide == ControllerHand.Left) {
+            if (grabber.HandSide == ControllerHand.Left)
+            {
                 _indexIsNear = input.LeftTriggerNear;
                 _thumbIsNear = input.LeftThumbNear;
                 _triggerValue = input.LeftTrigger;
                 _gripValue = input.LeftGrip;
             }
-            else if (grabber.HandSide == ControllerHand.Right) {
+            else if (grabber.HandSide == ControllerHand.Right)
+            {
                 _indexIsNear = input.RightTriggerNear;
                 _thumbIsNear = input.RightThumbNear;
                 _triggerValue = input.RightTrigger;
@@ -379,11 +439,13 @@ namespace BNG {
             PointAmount *= InputBridge.Instance.InputSource == XRInputSource.SteamVR ? 0.25F : 0.5F; // Reduce the amount our finger points out if Oculus or XRInput
 
             // If not near the trigger, point finger all the way out
-            if (input.SupportsIndexTouch && _indexIsNear == false && PointAmount != 0) {
+            if (input.SupportsIndexTouch && _indexIsNear == false && PointAmount != 0)
+            {
                 PointAmount = 1f;
             }
             // Does not support touch, stick finger out as if pointing if no trigger found
-            else if (!input.SupportsIndexTouch && _triggerValue == 0) {
+            else if (!input.SupportsIndexTouch && _triggerValue == 0)
+            {
                 PointAmount = 1;
             }
         }
@@ -393,17 +455,20 @@ namespace BNG {
 
         public virtual void UpdateAnimimationStates()
         {
-            if(DoUpdateAnimationStates == false) {
+            if (DoUpdateAnimationStates == false)
+            {
                 return;
             }
 
             // Enable Animator if it was disabled by the hand poser
-            if(IsAnimatorGrabbable() && !HandAnimator.isActiveAndEnabled) {
+            if (IsAnimatorGrabbable() && !HandAnimator.isActiveAndEnabled)
+            {
                 EnableHandAnimator();
             }
 
             // Update Hand Animator info
-            if (HandAnimator != null && HandAnimator.isActiveAndEnabled && HandAnimator.runtimeAnimatorController != null) {
+            if (HandAnimator != null && HandAnimator.isActiveAndEnabled && HandAnimator.runtimeAnimatorController != null)
+            {
 
                 _prevGrip = Mathf.Lerp(_prevGrip, GripAmount, Time.deltaTime * HandAnimationSpeed);
                 _prevThumb = Mathf.Lerp(_prevThumb, ThumbAmount, Time.deltaTime * HandAnimationSpeed);
@@ -420,14 +485,16 @@ namespace BNG {
                 HandAnimator.SetLayerWeight(2, _prevPoint);
 
                 // Should we use a custom hand pose?
-                if (grabber != null && grabber.HeldGrabbable != null) {
+                if (grabber != null && grabber.HeldGrabbable != null)
+                {
                     HandAnimator.SetLayerWeight(0, 0);
                     HandAnimator.SetLayerWeight(1, 0);
                     HandAnimator.SetLayerWeight(2, 0);
 
                     PoseId = (int)grabber.HeldGrabbable.CustomHandPose;
 
-                    if (grabber.HeldGrabbable.ActiveGrabPoint != null) {
+                    if (grabber.HeldGrabbable.ActiveGrabPoint != null)
+                    {
 
                         // Default Grip to 1 when holding an item
                         HandAnimator.SetLayerWeight(0, 1);
@@ -439,11 +506,13 @@ namespace BNG {
                         setAnimatorBlend(grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMin, grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMax, PointAmount, 2);
 
                         // Thumb
-                        setAnimatorBlend(grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMin, grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMax, ThumbAmount, 1);                       
+                        setAnimatorBlend(grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMin, grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMax, ThumbAmount, 1);
                     }
-                    else {
+                    else
+                    {
                         // Force everything to grab if we're holding something
-                        if (grabber.HoldingItem) {
+                        if (grabber.HoldingItem)
+                        {
                             GripAmount = 1;
                             PointAmount = 0;
                             ThumbAmount = 0;
@@ -451,15 +520,17 @@ namespace BNG {
                     }
 
                     HandAnimator.SetInteger("Pose", PoseId);
-                    
+
                 }
-                else {
+                else
+                {
                     HandAnimator.SetInteger("Pose", 0);
                 }
             }
         }
 
-        void setAnimatorBlend(float min, float max, float input, int animationLayer) {
+        void setAnimatorBlend(float min, float max, float input, int animationLayer)
+        {
             HandAnimator.SetLayerWeight(animationLayer, min + (input) * max - min);
         }
 
@@ -467,50 +538,61 @@ namespace BNG {
         /// Returns true if there is a valid animator and the held grabbable is set to use an Animation ID
         /// </summary>
         /// <returns></returns>
-        public virtual bool IsAnimatorGrabbable() {
+        public virtual bool IsAnimatorGrabbable()
+        {
             return HandAnimator != null && grabber != null && grabber.HeldGrabbable != null && grabber.HeldGrabbable.handPoseType == HandPoseType.AnimatorID;
         }
 
-        public virtual void UpdateHandPoser() {
+        public virtual void UpdateHandPoser()
+        {
 
             // Bail early if user set flag not to update
-            if (DoUpdateHandPoser == false) {
+            if (DoUpdateHandPoser == false)
+            {
                 return;
             }
 
             // HandPoser may have changed - check for new component
-            if (handPoser == null || !handPoser.isActiveAndEnabled) {
+            if (handPoser == null || !handPoser.isActiveAndEnabled)
+            {
                 handPoser = GetComponentInChildren<HandPoser>();
-            }                        
+            }
 
             // Bail early if missing any info
-            if(HandPoseOverride == null && (grabber == null || handPoser == null || grabber.HeldGrabbable == null || grabber.HeldGrabbable.handPoseType != HandPoseType.HandPose)) {
+            if (HandPoseOverride == null && (grabber == null || handPoser == null || grabber.HeldGrabbable == null || grabber.HeldGrabbable.handPoseType != HandPoseType.HandPose))
+            {
                 return;
             }
 
             // Make sure blending isn't active
-            if(poseBlender != null && poseBlender.UpdatePose) {
+            if (poseBlender != null && poseBlender.UpdatePose)
+            {
                 poseBlender.UpdatePose = false;
-            }            
+            }
 
             // Use HandPoseOverride if specified
-            if (HandPoseOverride) {
+            if (HandPoseOverride)
+            {
                 UpdateCurrentHandPose();
-                if (handPoser.CurrentPose != HandPoseOverride) {
-                    
+                if (handPoser.CurrentPose != HandPoseOverride)
+                {
+
                 }
             }
             // Update hand pose if changed
-            else if (handPoser.CurrentPose == null || handPoser.CurrentPose != grabber.HeldGrabbable.SelectedHandPose) {
+            else if (handPoser.CurrentPose == null || handPoser.CurrentPose != grabber.HeldGrabbable.SelectedHandPose)
+            {
                 UpdateCurrentHandPose();
             }
         }
 
-        public virtual bool IsHandPoserGrabbable() {
+        public virtual bool IsHandPoserGrabbable()
+        {
             return handPoser != null && grabber != null && grabber.HeldGrabbable != null && grabber.HeldGrabbable.handPoseType == HandPoseType.HandPose;
         }
 
-        public virtual void UpdateHandPoserBlendState() {
+        public virtual void UpdateHandPoserBlendState()
+        {
             // Start with same values as idle state
             UpdateHandPoserIdleState();
 
@@ -518,13 +600,15 @@ namespace BNG {
             poseBlender.GripValue = 0;
         }
 
-        public virtual void UpdateHandPoserIdleState() {
+        public virtual void UpdateHandPoserIdleState()
+        {
 
             // Make sure animator isn't firing while we do our idle state
             DisableHandAnimator();
 
             // Check if we need to set up the pose blender
-            if(!SetupPoseBlender()) {
+            if (!SetupPoseBlender())
+            {
                 // If Pose Blender couldn't be setup we should just exit
                 return;
             }
@@ -533,7 +617,8 @@ namespace BNG {
             poseBlender.UpdatePose = true;
 
             // Check for Valve Index Knuckles finger tracking
-            if (UseIndexFingerTracking && InputBridge.Instance.IsValveIndexController) {
+            if (UseIndexFingerTracking && InputBridge.Instance.IsValveIndexController)
+            {
                 UpdateIndexFingerBlending();
                 return;
             }
@@ -546,7 +631,8 @@ namespace BNG {
             float targetIndexValue = _triggerValue;
 
             // If the index finger is on the trigger we can bring the finger in a bit
-            if (targetIndexValue < 0.1f && _indexIsNear) {
+            if (targetIndexValue < 0.1f && _indexIsNear)
+            {
                 targetIndexValue = 0.1f;
             }
             poseBlender.IndexValue = Mathf.Lerp(poseBlender.IndexValue, targetIndexValue, Time.deltaTime * handPoser.AnimationSpeed);
@@ -556,7 +642,8 @@ namespace BNG {
             poseBlender.GripValue = Mathf.Lerp(poseBlender.GripValue, _gripValue, Time.deltaTime * handPoser.AnimationSpeed);
         }
 
-        public virtual void UpdateIndexFingerBlending() {
+        public virtual void UpdateIndexFingerBlending()
+        {
 #if STEAM_VR_SDK
             if (grabber.HandSide == ControllerHand.Left) {
                 poseBlender.IndexValue = InputBridge.Instance.LeftIndexCurl;
@@ -575,31 +662,38 @@ namespace BNG {
 #endif
         }
 
-        public virtual bool SetupPoseBlender() {
+        public virtual bool SetupPoseBlender()
+        {
 
             // Make sure we have a valid handPoser to work with
-            if(handPoser == null || !handPoser.isActiveAndEnabled) {
+            if (handPoser == null || !handPoser.isActiveAndEnabled)
+            {
                 handPoser = GetComponentInChildren<HandPoser>(false);
             }
 
             // No HandPoser is found, we should just exit
-            if (handPoser == null) {
+            if (handPoser == null)
+            {
                 return false;
                 // Debug.Log("Adding Hand Poser to " + transform.name);
                 // handPoser = this.gameObject.AddComponent<HandPoser>();
             }
 
             // If no pose blender is found, add it and set it up so we can use it in Update()
-            if (poseBlender == null || !poseBlender.isActiveAndEnabled) {
+            if (poseBlender == null || !poseBlender.isActiveAndEnabled)
+            {
                 poseBlender = handPoser.GetComponentInChildren<HandPoseBlender>();
             }
 
             // If no pose blender is found, add it and set it up so we can use it in Update()
-            if (poseBlender == null) {
-                if(handPoser != null) {
+            if (poseBlender == null)
+            {
+                if (handPoser != null)
+                {
                     poseBlender = handPoser.gameObject.AddComponent<HandPoseBlender>();
                 }
-                else {
+                else
+                {
                     poseBlender = this.gameObject.AddComponent<HandPoseBlender>();
                 }
 
@@ -614,51 +708,65 @@ namespace BNG {
             return true;
         }
 
-        public virtual HandPose GetDefaultOpenPose() {
-            if(DefaultOpenPose) {
+        public virtual HandPose GetDefaultOpenPose()
+        {
+            if (DefaultOpenPose)
+            {
                 return DefaultOpenPose;
             }
-            else {
+            else
+            {
                 return DefaultOpenPose = Resources.Load<HandPose>("Open");
             }
         }
 
-        public virtual HandPose GetDefaultClosedPose() {
-            if (DefaultClosePose) {
+        public virtual HandPose GetDefaultClosedPose()
+        {
+            if (DefaultClosePose)
+            {
                 return DefaultClosePose;
             }
-            else {
+            else
+            {
                 return DefaultClosePose = Resources.Load<HandPose>("Closed");
             }
         }
 
-        public virtual void EnableHandPoser() {
+        public virtual void EnableHandPoser()
+        {
             // Disable the hand animator if we have a valid hand pose to use
-            if(handPoser != null) {
+            if (handPoser != null)
+            {
                 // Just need to make sure animator isn't enabled
                 DisableHandAnimator();
             }
         }
 
-        public virtual void EnableAutoPoser(bool continuous) {
+        public virtual void EnableAutoPoser(bool continuous)
+        {
 
             // Check if AutoPoser was set
-            if (autoPoser == null || !autoPoser.gameObject.activeInHierarchy) {
+            if (autoPoser == null || !autoPoser.gameObject.activeInHierarchy)
+            {
 
-                if(handPoser != null) {
+                if (handPoser != null)
+                {
                     autoPoser = handPoser.GetComponent<AutoPoser>();
                 }
                 // Check for active children
-                else {
+                else
+                {
                     autoPoser = GetComponentInChildren<AutoPoser>(false);
                 }
             }
 
             // Do the auto pose
-            if (autoPoser != null) {
+            if (autoPoser != null)
+            {
                 autoPoser.UpdateContinuously = continuous;
 
-                if(!continuous) {
+                if (!continuous)
+                {
                     autoPoser.UpdateAutoPoseOnce();
                 }
 
@@ -669,45 +777,58 @@ namespace BNG {
             }
         }
 
-        public virtual void DisablePoseBlender() {
-            if (poseBlender != null) {
+        public virtual void DisablePoseBlender()
+        {
+            if (poseBlender != null)
+            {
                 poseBlender.UpdatePose = false;
             }
         }
 
-        public virtual void DisableAutoPoser() {
-            if (autoPoser != null) {
+        public virtual void DisableAutoPoser()
+        {
+            if (autoPoser != null)
+            {
                 autoPoser.UpdateContinuously = false;
             }
         }
 
-        public virtual bool IsAutoPoserGrabbable() {
+        public virtual bool IsAutoPoserGrabbable()
+        {
             return autoPoser != null && grabber != null && grabber.HeldGrabbable != null && (grabber.HeldGrabbable.handPoseType == HandPoseType.AutoPoseOnce || grabber.HeldGrabbable.handPoseType == HandPoseType.AutoPoseContinuous);
         }
 
-        public virtual void EnableHandAnimator() {
-            if (HandAnimator != null && HandAnimator.enabled == false) {
+        public virtual void EnableHandAnimator()
+        {
+            if (HandAnimator != null && HandAnimator.enabled == false)
+            {
                 HandAnimator.enabled = true;
             }
 
             // If using a hand poser reset the currennt pose so it can be set again later
-            if(handPoser != null) {
+            if (handPoser != null)
+            {
                 handPoser.CurrentPose = null;
             }
         }
 
-        public virtual void DisableHandAnimator() {
-            if (HandAnimator != null && HandAnimator.enabled) {
+        public virtual void DisableHandAnimator()
+        {
+            if (HandAnimator != null && HandAnimator.enabled)
+            {
                 HandAnimator.enabled = false;
             }
         }
 
-        public virtual void OnGrabberGrabbed(Grabbable grabbed) {
+        public virtual void OnGrabberGrabbed(Grabbable grabbed)
+        {
             // Set the Hand Pose on our component
-            if (grabbed.SelectedHandPose != null) {
+            if (grabbed.SelectedHandPose != null)
+            {
                 UpdateCurrentHandPose();
             }
-            else if(grabbed.handPoseType == HandPoseType.HandPose && grabbed.SelectedHandPose == null) {
+            else if (grabbed.handPoseType == HandPoseType.HandPose && grabbed.SelectedHandPose == null)
+            {
                 // Debug.Log("No HandPose selected for object '" + grabbed.transform.name + "'. Falling back to default hand pose.");
 
                 // Fall back to the closed pose if no selected hand pose was found
@@ -716,28 +837,34 @@ namespace BNG {
             }
         }
 
-        public virtual void UpdateCurrentHandPose() {
-            if(handPoser != null) {
+        public virtual void UpdateCurrentHandPose()
+        {
+            if (handPoser != null)
+            {
                 // Update the pose
                 // Use HandPose Override if available
-                if(HandPoseOverride != null) {
+                if (HandPoseOverride != null)
+                {
                     handPoser.CurrentPose = HandPoseOverride;
                 }
                 // Check what HandPose is specified on the currently held grabbable
-                else if(grabber != null && grabber.HeldGrabbable != null) {
+                else if (grabber != null && grabber.HeldGrabbable != null)
+                {
                     handPoser.CurrentPose = grabber.HeldGrabbable.SelectedHandPose;
                 }
-                
+
                 handPoser.OnPoseChanged();
             }
         }
 
-        public virtual void OnGrabberReleased(Grabbable released) {
+        public virtual void OnGrabberReleased(Grabbable released)
+        {
             OnGrabDrop();
         }
     }
-    
-    public enum HandPoserType {
+
+    public enum HandPoserType
+    {
         HandPoser,
         Animator,
         AutoPoser,

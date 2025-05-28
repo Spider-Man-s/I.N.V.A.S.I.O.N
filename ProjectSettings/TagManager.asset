@@ -7,6 +7,8 @@ TagManager:
   - Fire
   - WaveController
   - Spawner
+  - ufo
+
   layers:
   - Default
   - TransparentFX

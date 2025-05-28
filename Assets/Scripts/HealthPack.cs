@@ -5,7 +5,7 @@ public class HealthPack : MonoBehaviour
 {
     public int healAmount = 25;
     public AudioClip pickupSound;
-    public float respawnTime = 3f;
+    private float respawnTime = 3f;
 
     private Collider[] colliders;
     private Renderer[] renderers;
@@ -23,7 +23,8 @@ public class HealthPack : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            GameStats.PlayerHealth += healAmount;
+            GameStats.PlayerHealth = Mathf.Min(GameStats.PlayerHealth + healAmount, 100);
+
 
             if (pickupSound != null)
             {
