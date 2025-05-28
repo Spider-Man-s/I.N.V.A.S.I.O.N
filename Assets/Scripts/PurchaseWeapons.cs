@@ -53,6 +53,15 @@ public class PurchaseWeapons : MonoBehaviour
             case "Shotgun":
                 GameStats.ShotgunUpgradeLevel++;
                 break;
+            case "Pistol":
+                GameStats.PistolUpgradeLevel++;
+                break;
+            case "AR":
+                GameStats.ARUpgradeLevel++;
+                break;
+            case "Sniper":
+                GameStats.SniperUpgradeLevel++;
+                break;
         }
 
         UpdateVendingDisplay();
@@ -116,6 +125,12 @@ public class PurchaseWeapons : MonoBehaviour
                 return GameStats.RevolverUpgradeLevel;
             case "Shotgun":
                 return GameStats.ShotgunUpgradeLevel;
+            case "Pistol":
+                return GameStats.PistolUpgradeLevel;
+            case "AR":
+                return GameStats.ARUpgradeLevel;
+            case "Sniper":
+                return GameStats.SniperUpgradeLevel;
             default:
                 return 1;
         }

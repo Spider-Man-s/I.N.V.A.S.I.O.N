@@ -8,7 +8,7 @@ QualitySettings:
   m_QualitySettings:
   - serializedVersion: 4
     name: PCVR
-    pixelLightCount: 2
+    pixelLightCount: 1
     shadows: 1
     shadowResolution: 3
     shadowProjection: 1

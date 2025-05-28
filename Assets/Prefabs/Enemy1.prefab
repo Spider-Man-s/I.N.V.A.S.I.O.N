@@ -1213,6 +1213,7 @@ GameObject:
   - component: {fileID: 3621202306986969514}
   - component: {fileID: 552000463676727443}
   - component: {fileID: 4354787516473348030}
+  - component: {fileID: 3485124857283527592}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -1351,10 +1352,34 @@ MonoBehaviour:
       m_Calls: []
   onDestroyed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3485124857283527592}
+        m_TargetAssemblyTypeName: EnemyPoints, Assembly-CSharp
+        m_MethodName: AddPoints
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3485124857283527592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019671188999210914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff4cbf404f833647b5bd7de679cc9bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5389906315622939522
 GameObject:
   m_ObjectHideFlags: 0
