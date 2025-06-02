@@ -17677,7 +17677,7 @@ PrefabInstance:
     - target: {fileID: 4916726048760973915, guid: 9f87e785e9ac9c14bb8dc5718f4378d0,
         type: 3}
       propertyPath: ForceStartXRInEditor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4916726048866451616, guid: 9f87e785e9ac9c14bb8dc5718f4378d0,
         type: 3}
