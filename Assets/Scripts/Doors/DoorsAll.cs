@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class DoorsAll : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class DoorsAll : MonoBehaviour
     public string closeTrigger = "CloseDoor";
 
     private int objectsInTrigger = 0;
+
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public MeshRenderer visualEffect1;
+    public MeshRenderer visualEffect2;
+    public float effectDuration = 1.3f;
 
     void Start()
     {
@@ -23,6 +30,11 @@ public class DoorsAll : MonoBehaviour
         {
             doorAnimator.SetTrigger(openTrigger);
         }
+        if (!GetComponent<Animator>().enabled)
+        {
+            audioSource.PlayOneShot(audioClip);
+            StartCoroutine(ShowEffectTemporary());
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -34,4 +46,14 @@ public class DoorsAll : MonoBehaviour
             objectsInTrigger = 0; // Just in case
         }
     }
+
+    IEnumerator ShowEffectTemporary()
+    {
+        visualEffect1.enabled = true;
+        visualEffect2.enabled = true;
+        yield return new WaitForSeconds(effectDuration);
+        visualEffect1.enabled = false;
+        visualEffect2.enabled = false;
+    }
+
 }
