@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7261c6e08accb8042b91ddc334a971f9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 7480
+  packageName: HighRes Shuttle Class Starship
+  packageVersion: 1.1
+  assetPath: Assets/HighResAstraStarships/AstraShuttlePackage/3DModel/Materials/astra_hull_01.mat
+  uploadId: 28971
