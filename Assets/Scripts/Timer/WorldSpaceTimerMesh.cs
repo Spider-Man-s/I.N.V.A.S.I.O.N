@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WorldSpaceTimerMesh : MonoBehaviour
 {
@@ -8,9 +9,8 @@ public class WorldSpaceTimerMesh : MonoBehaviour
     private float currentTime;
     private TextMeshPro textMesh;
 
-    // Referenca na zvuk i fade panel
     public AudioSource explosionSound;
-    public Image whiteFlashPanel; // UI Image
+    public Image whiteFlashPanel; 
     private bool hasExploded = false;
 
     public CameraShake cameraShake;
@@ -28,14 +28,14 @@ public class WorldSpaceTimerMesh : MonoBehaviour
             currentTime -= Time.deltaTime;
 
             if (currentTime < 0)
-                currentTime = 0; // OVDJE zaustavljamo ispod nule
+                currentTime = 0; 
 
             UpdateTimerDisplay(currentTime);
         }
         else if (!hasExploded)
         {
             hasExploded = true;
-            currentTime = 0; // Osiguraj da ostane na nuli
+            currentTime = 0; 
             UpdateTimerDisplay(currentTime);
             TriggerExplosionEffect();
         }
@@ -65,7 +65,7 @@ public class WorldSpaceTimerMesh : MonoBehaviour
         }
         if (cameraShake != null)
         {
-            cameraShake.TriggerShake(1f, 0.05f); // 1 sekundi, jačina 0.2
+            cameraShake.TriggerShake(1f, 0.05f); 
         }
 
     }
@@ -83,5 +83,9 @@ public class WorldSpaceTimerMesh : MonoBehaviour
             whiteFlashPanel.color = Color.Lerp(startColor, endColor, time / duration);
             yield return null;
         }
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene("QuitGame");
     }
 }
