@@ -34,6 +34,7 @@ public class WorldSpaceTimerMesh : MonoBehaviour
         }
         else if (!hasExploded)
         {
+            GameStats.win = false;
             hasExploded = true;
             currentTime = 0; 
             UpdateTimerDisplay(currentTime);
