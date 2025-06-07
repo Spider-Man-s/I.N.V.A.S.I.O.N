@@ -9,8 +9,8 @@ ShaderImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 127325
-  packageName: Particle Pack
-  packageVersion: 3.1
-  assetPath: Assets/Tomerinio/Animation_Textures/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader
-  uploadId: 691001
+  productId: 298874
+  packageName: Animations_Textures
+  packageVersion: 1.0.2
+  assetPath: Assets/Animation_Textures/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader
+  uploadId: 720821

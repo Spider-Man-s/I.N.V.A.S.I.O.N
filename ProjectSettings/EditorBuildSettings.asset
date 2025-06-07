@@ -35,9 +35,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InvasionApp.unity
     guid: d37acf74b597dd44eb89b53d6d557cff
-  - enabled: 1
-    path: Assets/Scenes/QuitGame.unity
-    guid: 2289af958fe20944387d32bdc6a803ed
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6ca25115fcb754542bd191f1d108f72b,
       type: 2}

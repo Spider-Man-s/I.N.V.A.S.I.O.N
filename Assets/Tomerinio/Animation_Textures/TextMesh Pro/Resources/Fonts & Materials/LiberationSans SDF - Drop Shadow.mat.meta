@@ -1,16 +1,16 @@
 fileFormatVersion: 2
 guid: e73a58f6e2794ae7b1b7e50b7fb811b0
 timeCreated: 1484172806
-licenseType: Store
+licenseType: Pro
 NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 127325
-  packageName: Particle Pack
-  packageVersion: 3.1
-  assetPath: Assets/Tomerinio/Animation_Textures/TextMesh Pro/Resources/Fonts & Materials/LiberationSans
+  productId: 298874
+  packageName: Animations_Textures
+  packageVersion: 1.0.2
+  assetPath: Assets/Animation_Textures/TextMesh Pro/Resources/Fonts & Materials/LiberationSans
     SDF - Drop Shadow.mat
-  uploadId: 691001
+  uploadId: 720821

@@ -18,6 +18,5 @@ public static class GameStats
 
     public static int SniperUpgradeLevel = 1;
 
-    public static bool win = false;
 
 }

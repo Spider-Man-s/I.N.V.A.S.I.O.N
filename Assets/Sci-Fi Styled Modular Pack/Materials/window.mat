@@ -12,38 +12,19 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 1
+  m_InvalidKeywords:
+  - _ALPHAPREMULTIPLY_ON
+  - _METALLICGLOSSMAP
+  m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Base_Map:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Normal_Map:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BASE_COLOR_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BUMP_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BaseMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -60,52 +41,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Dissovle_Texture:
-        m_Texture: {fileID: 2800000, guid: 10e6d20e5da49754d91b6b0df552caa1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EMISSION_COLOR_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 2800000, guid: 343596706f539db458d30dcc935523b4, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _IceRefraction_Texture:
-        m_Texture: {fileID: 2800000, guid: c701d8bbcea7c2c4abbf9c22ee81138a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _METALNESS_MAP:
-        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 52f89a41c5c9f1b4280ba2133f0bf7b0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Main_Texture:
-        m_Texture: {fileID: 2800000, guid: 948d2e12a2c14394f887f238af982794, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Main_texture:
-        m_Texture: {fileID: 2800000, guid: 948d2e12a2c14394f887f238af982794, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Mask:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: c4d2256bf54ca0948bc30a5cc74fb153, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NORMAL_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OPACITY_MAP:
-        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -116,149 +61,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _REFLECTIONS_COLOR_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _REFLECTIONS_IOR_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _REFLECTIONS_ROUGHNESS_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SPECULAR_COLOR_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SPECULAR_IOR_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SPECULAR_ROUGHNESS_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_418dd7684adf4f2182c221d7809597e7_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 2a1bcd71cf85fdc4e8c0def85e4f5d9e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_8c97e0f1cd174b9aacb626ec0e589357_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 78e71b9e097c52e4cba00d81ed4dbe74, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_fa2d06cb22734338a65c6a92900d3bdd_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 78e71b9e097c52e4cba00d81ed4dbe74, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TRANSPARENCY_MAP:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture2D:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Normal_Blend: 0.5
-    - _AlphaToMask: 0
-    - _BASE_COLOR_WEIGHT: 1
-    - _BUMP_MAP_STRENGTH: 0.3
     - _BumpScale: 1
-    - _ColorMask: 15
     - _Cutoff: 0.5
-    - _DecalMeshBiasType: 0
-    - _DecalMeshDepthBias: 0
-    - _DecalMeshViewBias: 0
     - _DetailNormalMapScale: 1
-    - _Disstortion: 0.5
-    - _Distance: 100
-    - _DrawOrder: 0
     - _DstBlend: 10
-    - _EMISSION_WEIGHT: 1
-    - _EnvironmentDepthBias: 0
-    - _FadeEnd: 0.5
-    - _FadeStart: 0.5
-    - _Frost_middle_stregth: 1
-    - _Frost_strength: 0.2
-    - _GlossMapScale: 1
     - _Glossiness: 0.063
-    - _GlossyReflections: 1
-    - _Glow_Line_Thickness: 0.1
-    - _Glow_Thickness: 0.1
-    - _Heat_Distortion: 0
-    - _Hight_Cutoff: 0.02
-    - _Inner_Fog_Noise_Size: 10
-    - _Inner_Fog_Power: 2
-    - _Intensity: 1
-    - _METALNESS: 0
     - _Metallic: 0.396
     - _Mode: 3
-    - _Noise_Scale: 50
-    - _Noise_Strength: 0.3
-    - _OPACITY: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _REFLECTIONS_IOR: 1.52
-    - _REFLECTIONS_ROUGHNESS: 1
-    - _REFLECTIONS_WEIGHT: 1
-    - _Refreact_strength: -1
-    - _SPECULAR_IOR: 1.5
-    - _SPECULAR_ROUGHNESS: 0
-    - _Scale: 1
-    - _Smoothness: 0.5
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _Speed: 1
     - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _TRANSPARENCY: 0
-    - _Thickness: 0.5
     - _UVSec: 0
-    - _UseUIAlphaClip: 0
     - _ZWrite: 0
-    - _middle: 1
     m_Colors:
-    - Main_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 0}
-    - _BASE_COLOR: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Base_Color: {r: 1, g: 0, b: 0.30343717, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Glow: {r: 3.564869, g: 1.873279, b: 0, a: 0}
-    - _Direction_Speed: {r: 0, g: 1.5, b: 0, a: 0}
-    - _Dissolve_Amount: {r: -0.8, g: 1, b: 0, a: 0}
-    - _Distortino_Speed: {r: 0, g: 0, b: 0, a: 0}
-    - _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
-    - _Edge_Color: {r: 2.996078, g: 0.8627451, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Frost_tile: {r: 1, g: 1, b: 0, a: 0}
-    - _GlowColor: {r: 0, g: 1.386243, b: 5.340313, a: 0}
-    - _Ice_tile: {r: 1, g: 1, b: 0, a: 0}
-    - _Main_Color: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 0}
-    - _REFLECTIONS_COLOR: {r: 1, g: 1, b: 1, a: 1}
-    - _SPECULAR_COLOR: {r: 1, g: 1, b: 1, a: 0}
-    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
-    - _inner_frost_position: {r: 0, g: 0, b: 0, a: 0}
-    - _middle_placement: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
