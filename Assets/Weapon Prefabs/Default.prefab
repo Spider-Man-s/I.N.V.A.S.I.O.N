@@ -4784,7 +4784,7 @@ GameObject:
   - component: {fileID: 6186120165020594599}
   m_Layer: 10
   m_Name: Default
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5062,7 +5062,7 @@ MonoBehaviour:
   RecoilDuration: 0.3
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1
   TriggerTransform: {fileID: 6847819604555215}
   TriggerRotateSpeed: 15
   SlideTransform: {fileID: 2283946515245461085}

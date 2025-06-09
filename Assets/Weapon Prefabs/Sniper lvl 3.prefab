@@ -1818,7 +1818,7 @@ GameObject:
   - component: {fileID: 5953365530081636571}
   m_Layer: 10
   m_Name: Sniper lvl 3
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2089,7 +2089,7 @@ MonoBehaviour:
   RecoilDuration: 0.05
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1
   TriggerTransform: {fileID: 6571055423991911086}
   TriggerRotateSpeed: 15
   SlideTransform: {fileID: 5950969860132161686}

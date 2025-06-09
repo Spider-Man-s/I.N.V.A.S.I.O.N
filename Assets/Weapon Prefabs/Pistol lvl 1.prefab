@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 8144302737821236536}
   m_Layer: 10
   m_Name: Pistol lvl 1
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   RecoilDuration: 0.05
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1
   TriggerTransform: {fileID: 1180810889253216625}
   TriggerRotateSpeed: 20
   SlideTransform: {fileID: 542912958467768945}

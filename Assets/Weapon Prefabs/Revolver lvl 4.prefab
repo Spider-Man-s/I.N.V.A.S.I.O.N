@@ -7495,7 +7495,7 @@ GameObject:
   - component: {fileID: 2841656547879418256}
   m_Layer: 10
   m_Name: Revolver lvl 4
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7763,7 +7763,7 @@ MonoBehaviour:
   RecoilDuration: 0.3
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1
   TriggerTransform: {fileID: 1563068318363978836}
   TriggerRotateSpeed: 15
   SlideTransform: {fileID: 8645126104629508359}

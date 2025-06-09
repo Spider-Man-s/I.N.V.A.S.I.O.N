@@ -8,20 +8,25 @@ TagManager:
   - WaveController
   - Spawner
   - ufo
-
+  - QDSUIIcon
+  - QDSUITextSecondaryColor
+  - QDSUISecondaryButton
+  - QDSUITooltip
+  - QDSUIToggleBorderlessButton
+  - Weapon
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Led_Layer
+  - 
   - Water
   - UI
   - 
   - 
-  - Restricted
-  - Player
-  - Grabbable
-  - Led
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

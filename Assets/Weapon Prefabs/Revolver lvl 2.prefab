@@ -1098,7 +1098,7 @@ GameObject:
   - component: {fileID: 2234319036003654449}
   m_Layer: 10
   m_Name: Revolver lvl 2
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1366,7 +1366,7 @@ MonoBehaviour:
   RecoilDuration: 0.3
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1
   TriggerTransform: {fileID: 6241284411941278636}
   TriggerRotateSpeed: 15
   SlideTransform: {fileID: 5027108271730116213}

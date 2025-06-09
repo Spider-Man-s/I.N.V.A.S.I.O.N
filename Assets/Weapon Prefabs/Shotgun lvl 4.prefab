@@ -3428,7 +3428,7 @@ GameObject:
   - component: {fileID: 7067744300292909399}
   m_Layer: 10
   m_Name: Shotgun lvl 4
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3691,8 +3691,8 @@ MonoBehaviour:
   BulletImpactForce: 1000
   InternalAmmo: 7
   MaxInternalAmmo: 8
-  AutoChamberRounds: 1
-  MustChamberRounds: 0
+  AutoChamberRounds: 0
+  MustChamberRounds: 1
   AlwaysFireProjectile: 0
   FireProjectileInSlowMo: 1
   SlowMoRateOfFire: 0.3
@@ -3706,7 +3706,7 @@ MonoBehaviour:
   RecoilDuration: 0.3
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1
   TriggerTransform: {fileID: 3541118997324833437}
   TriggerRotateSpeed: 15
   SlideTransform: {fileID: 0}

@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using BNG;
 
-public class HealthPack : MonoBehaviour
+public class SpeedPack : MonoBehaviour
 {
-    public int healAmount = 25;
+    public float speedMultiplier = 2f;
+    public float duration = 30f;
+    public float respawnTime = 30f;
     public AudioClip pickupSound;
-    private float respawnTime = 3f;
+
+    public SmoothLocomotion playerController;
 
     private Collider[] colliders;
     private Renderer[] renderers;
@@ -23,23 +27,32 @@ public class HealthPack : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            GameStats.PlayerHealth = Mathf.Min(GameStats.PlayerHealth + healAmount, 100);
-
-
             if (pickupSound != null)
-            {
                 AudioSource.PlayClipAtPoint(pickupSound, transform.position);
-            }
 
+            StartCoroutine(ApplySpeedBoost());
             HidePickup();
             StartCoroutine(RespawnAfterDelay(respawnTime));
         }
     }
 
-    void HidePickup()
+    IEnumerator ApplySpeedBoost()
     {
         isCollected = true;
 
+        if (playerController != null)
+        {
+            float originalSpeed = playerController.MovementSpeed;
+            playerController.MovementSpeed *= speedMultiplier;
+
+            yield return new WaitForSeconds(duration);
+
+            playerController.MovementSpeed = originalSpeed;
+        }
+    }
+
+    void HidePickup()
+    {
         foreach (Collider col in colliders)
             col.enabled = false;
 

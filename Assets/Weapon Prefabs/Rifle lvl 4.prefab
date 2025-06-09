@@ -16032,7 +16032,7 @@ GameObject:
   - component: {fileID: 6095353873731404217}
   m_Layer: 10
   m_Name: Rifle lvl 4
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16308,7 +16308,7 @@ MonoBehaviour:
   RecoilDuration: 0.05
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1
   TriggerTransform: {fileID: 7692657922442124917}
   TriggerRotateSpeed: 15
   SlideTransform: {fileID: 3629101284879619739}

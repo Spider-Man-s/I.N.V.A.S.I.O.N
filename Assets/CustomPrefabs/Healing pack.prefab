@@ -96,7 +96,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 398d4f6f7afb145419197ebb32ef6a78, type: 2}
+  - {fileID: 2100000, guid: 65bbb7e81e8b0a148998974ed213327b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,7 +218,6 @@ GameObject:
   - component: {fileID: 1161469322282526041}
   - component: {fileID: 2860214180498565884}
   - component: {fileID: 24051736464727606}
-  - component: {fileID: 1969637219129475037}
   - component: {fileID: 1969637219129475042}
   - component: {fileID: 5384000006084374708}
   m_Layer: 0
@@ -296,28 +295,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &1969637219129475037
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969637219129475043}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 40cfe5f4633028844aad80696856c136, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &1969637219129475042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -353,7 +330,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healAmount: 25
   pickupSound: {fileID: 8300000, guid: 784dac5217464274aa779a70652d5e40, type: 3}
-  respawnTime: 60
 --- !u!1 &2140494292526016552
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +563,7 @@ Transform:
   m_GameObject: {fileID: 3608635118420516858}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.51468545, z: 0}
+  m_LocalPosition: {x: 0, y: 0.644, z: 0}
   m_LocalScale: {x: 0.1968342, y: 0.1968342, z: 0.1968342}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -619,6 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6239282989957866924}
   - component: {fileID: 3194274721535008558}
+  - component: {fileID: 2671496367433863972}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -651,7 +628,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.040236473, g: 1, b: 0, a: 1}
   m_Intensity: 2
   m_Range: 2.5
   m_SpotAngle: 30
@@ -706,6 +683,29 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &2671496367433863972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624407430161662856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &4141231755716085338
 GameObject:
   m_ObjectHideFlags: 0
