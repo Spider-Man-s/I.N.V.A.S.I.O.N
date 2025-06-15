@@ -711,12 +711,12 @@ GameObject:
   - component: {fileID: 5162760061289040429}
   - component: {fileID: 5544302738046456462}
   - component: {fileID: 5023501986013592964}
-  - component: {fileID: 8746323177141291393}
+  - component: {fileID: 2723500311628632847}
   - component: {fileID: 2777940445628970382}
   - component: {fileID: 8245027630702455728}
   - component: {fileID: 7249018041254922278}
   m_Layer: 0
-  m_Name: Enemy2
+  m_Name: Radnik
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -784,7 +784,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -796,7 +796,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8746323177141291393
+--- !u!114 &2723500311628632847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -805,13 +805,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1340068441400412128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d29bedc3360e819458abeabfa5e87dab, type: 3}
+  m_Script: {fileID: 11500000, guid: f36ebac52893c394ba2e2b4e5d2765c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 1
-  hp: 0
-  score: 0
-  enemyPrefab: {fileID: 0}
+  enemyType: 0
+  hp: 10
+  score: 10
+  damageDealt: 50
+  attackRange: 1.2
+  enemyPrefab: {fileID: 1340068441400412128}
+  canMove: 0
+  dead: 0
+  despawnTime: 10
 --- !u!114 &2777940445628970382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,16 +829,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6de38f13d6b1443b2c5a5a20ac08d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  Health: 0
   SelfDestruct: 0
   SelfDestructDelay: 0.1
   SpawnOnDeath: {fileID: 0}
   ActivateGameObjectsOnDeath: []
   DeactivateGameObjectsOnDeath: []
-  DeactivateCollidersOnDeath: []
-  DestroyOnDeath: 1
+  DeactivateCollidersOnDeath:
+  - {fileID: 8245027630702455728}
+  DestroyOnDeath: 0
   DropOnDeath: 1
-  DestroyDelay: 0
+  DestroyDelay: 10
   Respawn: 0
   RespawnTime: 10
   RemoveBulletHolesOnDeath: 1
@@ -855,9 +861,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2723500311628632847}
+        m_TargetAssemblyTypeName: RadnikEnemy, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
+  destroyed: 0
 --- !u!136 &8245027630702455728
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -877,7 +896,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 2.5986953
   m_Direction: 1
   m_Center: {x: 0, y: 0.79934764, z: 0}

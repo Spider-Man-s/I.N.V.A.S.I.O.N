@@ -35,13 +35,15 @@ public class EnemySpawner : MonoBehaviour
     void Awake()
     {
         enemyWaveController = GameObject.FindGameObjectWithTag("WaveController").GetComponent<EnemyWaveController>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        spawning = false;
+        finishedSpawning = false;
     }
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        spawning = false;
-        finishedSpawning = false;
+        
+        
 
     }
 
@@ -123,12 +125,14 @@ public class EnemySpawner : MonoBehaviour
             neprijateljiZaSpawnat[enemyType] -= 1;
             GameObject spawnedEnemy = enemyWaveController.SpawnPooledEnemy(enemyType);
             SetUpEnemy(spawnedEnemy);
+            Debug.Log("Spawned " + spawnedEnemy.name);
 
         }
 
         yield return new WaitForSeconds(spawnDelay);
 
         //provjeri jel jos ima neprijatelja u dictu
+        Debug.Log("Sum of enemies left is: " + neprijateljiZaSpawnat.Values.Sum());
         if (neprijateljiZaSpawnat.Values.Sum() <= 0)
         {
             //prazan dict, prestani spawnat

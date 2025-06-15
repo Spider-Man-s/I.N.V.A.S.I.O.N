@@ -1210,12 +1210,12 @@ GameObject:
   - component: {fileID: 5724636165818361240}
   - component: {fileID: 2697822216009262744}
   - component: {fileID: 4909138759992993608}
-  - component: {fileID: 3621202306986969514}
+  - component: {fileID: 6591276750926559708}
   - component: {fileID: 552000463676727443}
   - component: {fileID: 4354787516473348030}
   - component: {fileID: 3485124857283527592}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: AranianPistolj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1249,7 +1249,7 @@ Animator:
   m_GameObject: {fileID: 5019671188999210914}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 72ede89b465d5624d882778b676341e0, type: 3}
-  m_Controller: {fileID: 9100000, guid: d5cbbb48aa3e9f14282b2a35763ef68a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8b505307da11c794eb7494b77340d321, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1271,7 +1271,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1283,7 +1283,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3621202306986969514
+--- !u!114 &6591276750926559708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1292,13 +1292,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5019671188999210914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d29bedc3360e819458abeabfa5e87dab, type: 3}
+  m_Script: {fileID: 11500000, guid: e8ba770fa0923734cada83158f05a364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
-  hp: 0
+  enemyType: 2
+  hp: 10
   score: 0
+  damageDealt: 1
+  attackRange: 4
   enemyPrefab: {fileID: 0}
+  canMove: 0
+  dead: 0
+  despawnTime: 10
 --- !u!136 &552000463676727443
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1318,7 +1323,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Height: 2.599366
   m_Direction: 1
   m_Center: {x: 0, y: 0.799683, z: 0}
@@ -1340,8 +1345,9 @@ MonoBehaviour:
   SpawnOnDeath: {fileID: 0}
   ActivateGameObjectsOnDeath: []
   DeactivateGameObjectsOnDeath: []
-  DeactivateCollidersOnDeath: []
-  DestroyOnDeath: 1
+  DeactivateCollidersOnDeath:
+  - {fileID: 552000463676727443}
+  DestroyOnDeath: 0
   DropOnDeath: 1
   DestroyDelay: 0
   Respawn: 0
@@ -1365,9 +1371,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6591276750926559708}
+        m_TargetAssemblyTypeName: AranianPistolj, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
+  destroyed: 0
 --- !u!114 &3485124857283527592
 MonoBehaviour:
   m_ObjectHideFlags: 0
