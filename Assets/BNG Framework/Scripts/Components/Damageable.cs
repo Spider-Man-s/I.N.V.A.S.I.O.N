@@ -83,7 +83,7 @@ namespace BNG {
         public bool SendDamageToInvector = true;
 #endif
 
-        bool destroyed = false;
+        public bool destroyed = false;
 
         Rigidbody rigid;
         bool initialWasKinematic;

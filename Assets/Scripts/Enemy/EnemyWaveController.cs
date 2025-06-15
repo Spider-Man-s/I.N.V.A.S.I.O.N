@@ -18,9 +18,9 @@ public class EnemyWaveController : MonoBehaviour
     //za poolanje neprijatelja
     private Dictionary<Enemy.EnemyType, List<GameObject>> pooledEnemies = new Dictionary<Enemy.EnemyType, List<GameObject>>();
 
-    //wave za demo
-    public Dictionary<Enemy.EnemyType, int> demoWave = new Dictionary<Enemy.EnemyType, int>();
-    //int je placeholder za lokacije na mapi po kojima ce se odredivati spawn lokacije
+    //trenutni wave
+    public Dictionary<Enemy.EnemyType, int> currentWave = new Dictionary<Enemy.EnemyType, int>();
+    
     public List<EnemySpawner> allSpawners = new List<EnemySpawner>();
 
     public List<EnemySpawner> activeSpawners = new List<EnemySpawner>();
@@ -31,7 +31,11 @@ public class EnemyWaveController : MonoBehaviour
     //mogu li se uopce waveovi spawnati
     public bool canStartWave;
 
+    public bool waveStarted = false;
+
     private Transform player;
+
+    private WaveDefinitions waveDefinitions;
 
     //ovisno o stanju igre mijenjaj kolicine neprijatelja, to cemo kasnije
 
@@ -40,6 +44,7 @@ public class EnemyWaveController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        waveDefinitions = transform.GetComponent<WaveDefinitions>();
         //pronadi sve spawnere
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner"))
         {
@@ -58,24 +63,36 @@ public class EnemyWaveController : MonoBehaviour
             pooledEnemies.Add(enemyType, new List<GameObject>());
         }
 
-        //postavi demo wave
-        demoWave.Add(Enemy.EnemyType.Enemy1, 0);
-        demoWave.Add(Enemy.EnemyType.Enemy2, 0);
+        //postavi wave
+        currentWave.Add(Enemy.EnemyType.Radnik, 0);
+        currentWave.Add(Enemy.EnemyType.AranianMac, 0);
+        currentWave.Add(Enemy.EnemyType.AranianPistolj, 0);
+        currentWave.Add(Enemy.EnemyType.Komando, 0);
+        currentWave.Add(Enemy.EnemyType.Sviker, 0);
 
         //zapocni wave
         if (canStartWave)
         {
-            //pronadi najobliznji spawner i njega aktiviraj
-            FindSpawnersNearPlayer(1);
+            //pokreni wave i spawnanje enemya
             DetermineWave();
-            SpawnWave(demoWave);
+            SpawnWave(currentWave);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (canStartWave && !waveStarted)
+        {
+            //flag upaljen, zapocni spawnanje opet
+            DetermineWave();
+            SpawnWave(currentWave);
+        }
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameStats.KeysFound += 1;
+        }
     }
 
     public GameObject SpawnPooledEnemy(Enemy.EnemyType enemyType)
@@ -87,6 +104,9 @@ public class EnemyWaveController : MonoBehaviour
             {
                 //spawnaj ovog lika
                 pooledEnemy.SetActive(true);
+                //resetaj flagove
+                Enemy enemyScript = pooledEnemy.GetComponent<Enemy>();
+                enemyScript.ResetEnemy();
                 return pooledEnemy;
             }
         }
@@ -127,15 +147,56 @@ public class EnemyWaveController : MonoBehaviour
     private void DetermineWave()
     {
         //ovisno o stanju igre odredi koje neprijatelje spawnat
-        //resetaj demo wave
-        demoWave[Enemy.EnemyType.Enemy1] += 3;
-        demoWave[Enemy.EnemyType.Enemy2] += 2;
+        if (GameStats.KeysFound == 0)
+        {
+            activeSpawners = waveDefinitions.Key0Spawners;
+            foreach (Enemy.EnemyType enemy in waveDefinitions.Key0Wave.Keys)
+            {
+                currentWave[enemy] += waveDefinitions.Key0Wave[enemy];
+            }
+        }
+        else if (GameStats.KeysFound == 1)
+        {
+            activeSpawners = waveDefinitions.Key1Spawners;
+            foreach (Enemy.EnemyType enemy in waveDefinitions.Key1Wave.Keys)
+            {
+                currentWave[enemy] += waveDefinitions.Key1Wave[enemy];
+            }
+        }
+        else if (GameStats.KeysFound == 2)
+        {
+            activeSpawners = waveDefinitions.Key2Spawners;
+            foreach (Enemy.EnemyType enemy in waveDefinitions.Key2Wave.Keys)
+            {
+                currentWave[enemy] += waveDefinitions.Key2Wave[enemy];
+            }
+        }
+        else if (GameStats.KeysFound == 3)
+        {
+            activeSpawners = waveDefinitions.Key3Spawners;
+            foreach (Enemy.EnemyType enemy in waveDefinitions.Key3Wave.Keys)
+            {
+                currentWave[enemy] += waveDefinitions.Key3Wave[enemy];
+            }
+        }
+        else if (GameStats.KeysFound == 4)
+        {
+            activeSpawners = waveDefinitions.Key4Spawners;
+            foreach (Enemy.EnemyType enemy in waveDefinitions.Key4Wave.Keys)
+            {
+                currentWave[enemy] += waveDefinitions.Key4Wave[enemy];
+            }
+        }
 
     }
 
+
+
     private void SpawnWave(Dictionary<Enemy.EnemyType, int> wave)
     {
+        waveStarted = true;
         //aktiviraj sve aktivne spawnere
+
         foreach (EnemySpawner spawner in activeSpawners)
         {
             spawner.neprijateljiZaSpawnat = wave;
@@ -186,15 +247,15 @@ public class EnemyWaveController : MonoBehaviour
         if (canStartWave)
             {
                 //zapocni opet waveove
-                FindSpawnersNearPlayer(1);
                 DetermineWave();
-                SpawnWave(demoWave);
+                SpawnWave(currentWave);
                 yield break;
 
             }
             else
             {
                 //prekini za sad
+                waveStarted = false;
                 yield break;
             }
     }
