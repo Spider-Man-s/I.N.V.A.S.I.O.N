@@ -18,7 +18,7 @@ public class ArmUIManager : MonoBehaviour
         hpBar.Initialize(GameStats.MaxHealth);
         hpBar.UpdateBar(GameStats.PlayerHealth);
 
-        shieldBar.Initialize(GameStats.MaxHealth);
+        shieldBar.Initialize(GameStats.MaxShield);
         shieldBar.UpdateBar(GameStats.PlayerShields);
     }
 

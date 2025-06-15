@@ -1,16 +1,20 @@
 using UnityEngine;
 using BNG;
-
+using UnityEngine.SceneManagement;
 public class VibratePhone : MonoBehaviour
 {
     public ControllerHand vibrationHand = ControllerHand.Left;
-    public float vibrationDuration = 0.2f;
-    public float vibrationAmplitude = 0.5f;
-    public float vibrationFrequency = 0.5f;
-    public float vibrationInterval = 1f;
+    public float vibrationDuration = 1.2f;
+    public float vibrationAmplitude = 1f;
+    public float vibrationFrequency = 0.1f;
+    public float vibrationInterval = 1.9f;
 
     private bool isCalling = false;
 
+    public GameObject buttonAC;
+    public GameObject buttonDEC;
+
+    public GameObject finger;
     void Start()
     {
         StartPhoneCall();
@@ -40,6 +44,10 @@ public class VibratePhone : MonoBehaviour
     {
         StopPhoneCall();
         Debug.Log("Call accepted.");
+        AudioManager.Instance.SetTrigger("CallAnswered");
+        buttonAC.SetActive(false);
+        buttonDEC.SetActive(false);
+        finger.SetActive(false);
     }
 
     public void DeclineCall()
@@ -47,6 +55,9 @@ public class VibratePhone : MonoBehaviour
         StopPhoneCall();
         Debug.Log("Call declined. Ringing again...");
         Invoke(nameof(StartPhoneCall), 5f);
+
+        //dodat scene transition
+        SceneManager.LoadScene("QuitGame");
     }
 
     void StopPhoneCall()

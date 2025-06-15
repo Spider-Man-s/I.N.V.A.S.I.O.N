@@ -8,6 +8,7 @@ public static class GameStats
     public static int Score = 999990;
     public static int MaxHealth = 100;
     public static int PlayerHealth = 100;
+    public static int MaxShield = 100;
     public static int PlayerShields = 0;
     public static bool PlayerDeath = false;
     public static int KeysFound = 0;
@@ -15,7 +16,6 @@ public static class GameStats
     public static int ShotgunUpgradeLevel = 1;
     public static int ARUpgradeLevel = 1;
     public static int PistolUpgradeLevel = 1;
-
     public static int SniperUpgradeLevel = 1;
 
     public static bool win = false;
