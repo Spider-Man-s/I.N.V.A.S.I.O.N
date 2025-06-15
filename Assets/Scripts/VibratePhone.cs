@@ -4,16 +4,16 @@ using UnityEngine.SceneManagement;
 public class VibratePhone : MonoBehaviour
 {
     public ControllerHand vibrationHand = ControllerHand.Left;
-    public float vibrationDuration = 1.2f;
-    public float vibrationAmplitude = 1f;
-    public float vibrationFrequency = 0.1f;
-    public float vibrationInterval = 1.9f;
+    public float vibrationDuration;
+    public float vibrationAmplitude;
+    public float vibrationFrequency;
+    public float vibrationInterval;
 
     private bool isCalling = false;
 
     public GameObject buttonAC;
     public GameObject buttonDEC;
-
+    public GameObject gameText;
     public GameObject finger;
     void Start()
     {
@@ -22,7 +22,6 @@ public class VibratePhone : MonoBehaviour
 
     public void StartPhoneCall()
     {
-        // ui set active
         if (isCalling) return;
 
         isCalling = true;
@@ -32,6 +31,13 @@ public class VibratePhone : MonoBehaviour
 
     void PhoneVibrate()
     {
+        if (InputBridge.Instance == null)
+        {
+            Debug.LogWarning("InputBridge.Instance is null!");
+            return;
+        }
+
+        Debug.Log("Vibrating controller...");
         InputBridge.Instance.VibrateController(
             vibrationAmplitude,
             vibrationDuration,
@@ -48,15 +54,12 @@ public class VibratePhone : MonoBehaviour
         buttonAC.SetActive(false);
         buttonDEC.SetActive(false);
         finger.SetActive(false);
+        gameText.SetActive(false);
     }
 
     public void DeclineCall()
     {
-        StopPhoneCall();
-        Debug.Log("Call declined. Ringing again...");
-        Invoke(nameof(StartPhoneCall), 5f);
 
-        //dodat scene transition
         SceneManager.LoadScene("QuitGame");
     }
 

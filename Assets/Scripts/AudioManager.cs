@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
         //  triggerActions["Boss3Dead"] = () => PlayMusic(3);
         // triggerActions["Boss4Dead"] = () => PlayMusic(4);
 
-        triggerActions["CallAnswered"] = () => PlayVoiceLine(0);
+        triggerActions["CallAnswered"] = () => PlayVoiceLine(0, false);
         // triggerActions["VictoryVoice"] = () => PlayVoiceLine(1);
     }
 
@@ -54,11 +54,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void PlayMusic(int index)
+    private void PlayMusic(int index, bool loop = false)
     {
         if (index >= 0 && index < musicClips.Count)
         {
             musicSource.clip = musicClips[index];
+            musicSource.loop = loop;
             musicSource.Play();
         }
         else
@@ -67,11 +68,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void PlayVoiceLine(int index)
+    private void PlayVoiceLine(int index, bool loop = false)
     {
         if (index >= 0 && index < voiceLineClips.Count)
         {
             voiceLineSource.clip = voiceLineClips[index];
+            voiceLineSource.loop = loop;
             voiceLineSource.Play();
         }
         else
