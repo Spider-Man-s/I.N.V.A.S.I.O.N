@@ -41,6 +41,11 @@ public class ArmUIManager : MonoBehaviour
  */
     }
 
+
+    public void KeyFound()
+    {
+        GameStats.KeysFound += 1;
+    }
     /*
         void TakeDamage(int amount)
         {
