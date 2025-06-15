@@ -8,7 +8,7 @@ public class PlaySound : MonoBehaviour
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>(); // ✅ Required to initialize audioSource
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(CallAfterDelay());
     }
 

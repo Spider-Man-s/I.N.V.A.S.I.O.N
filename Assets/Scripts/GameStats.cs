@@ -5,7 +5,7 @@ public static class GameStats
 {
 
 
-    public static int Score = 0;
+    public static int Score = 999990;
     public static int MaxHealth = 100;
     public static int PlayerHealth = 100;
     public static int PlayerShields = 0;

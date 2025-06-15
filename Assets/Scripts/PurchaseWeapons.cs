@@ -25,12 +25,15 @@ public class PurchaseWeapons : MonoBehaviour
 
         if (upgradeLevel > weaponPrefabs.Length)
         {
-            // Maxed out, just equip existing vending machine weapon
-            if (currentWeaponInstance != null && weaponEquipper != null)
+            // Equip a fresh instance of the weapon prefab
+            int indexToEquip = Mathf.Clamp(GetUpgradeLevel() - 1, 0, weaponPrefabs.Length - 1);
+
+            if (weaponEquipper != null && indexToEquip < weaponPrefabs.Length)
             {
-                weaponEquipper.EquipWeaponPrefab(currentWeaponInstance);
+                GameObject weaponToEquip = weaponPrefabs[indexToEquip];
+                weaponEquipper.EquipWeaponPrefab(weaponToEquip); // pass the prefab, not instance
             }
-            return;
+
         }
 
         // Check if the player has enough points
