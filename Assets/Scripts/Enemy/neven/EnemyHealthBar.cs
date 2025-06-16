@@ -11,7 +11,6 @@ public class EnemyHealthBar : MonoBehaviour
     public Slider healthSlider;
     public Image fillImage;
     public float maxHealth = 100f;
-    public float currentHealth;
 
     [Header("Colors")]
     public Color healthyColor = Color.green;
@@ -21,10 +20,31 @@ public class EnemyHealthBar : MonoBehaviour
     public float heightOffset = 2f; // Koliko iznad protivnika
 
     private Transform player; // Za okretanje prema igraču
+    private MonoBehaviour damageableComponent; // Generička referenca na Damageable skriptu
+    private float lastHealth; // Za praćenje promjena u Health vrijednosti
+    private bool isDead = false; // Za sprečavanje višestrukih poziva OnEnemyDied
 
     void Start()
     {
-        currentHealth = maxHealth;
+        // Pronađi Damageable komponentu na istom objektu koristeći ime klase
+        damageableComponent = GetComponent("Damageable") as MonoBehaviour;
+
+        if (damageableComponent != null)
+        {
+            // Koristi reflection za pristup Health varijabli
+            var healthField = damageableComponent.GetType().GetField("Health");
+            if (healthField != null)
+            {
+                maxHealth = (float)healthField.GetValue(damageableComponent);
+                lastHealth = maxHealth;
+                Debug.Log($"EnemyHealthBar connected to Damageable. Max Health: {maxHealth}");
+            }
+        }
+        else
+        {
+            Debug.LogError("EnemyHealthBar: Damageable component not found on the same object!");
+        }
+
         UpdateHealthBar();
 
         // Pronađi igrača za LookAt
@@ -35,31 +55,83 @@ public class EnemyHealthBar : MonoBehaviour
 
     void Update()
     {
-        // Health bar se uvijek okreće prema igraču
-        if (player != null)
+        // Provjeri da li se Health vrijednost promijenila u Damageable skripti
+        if (damageableComponent != null)
         {
-            transform.LookAt(player);
+            var healthField = damageableComponent.GetType().GetField("Health");
+            if (healthField != null)
+            {
+                float currentHealthValue = (float)healthField.GetValue(damageableComponent);
+
+                if (currentHealthValue != lastHealth)
+                {
+                    lastHealth = currentHealthValue;
+                    UpdateHealthBar();
+
+                    // Provjeri da li je enemy umro
+                    if (currentHealthValue <= 0 && !isDead)
+                    {
+                        OnEnemyDied();
+                    }
+                }
+            }
+        }
+
+        // Health bar se uvijek okreće prema igraču
+        // if (player != null)
+        // {
+        //     transform.LookAt(player);
+        // }
+    }
+
+    // Getter za currentHealth koji vraća vrijednost iz Damageable
+    public float CurrentHealth
+    {
+        get
+        {
+            if (damageableComponent != null)
+            {
+                var healthField = damageableComponent.GetType().GetField("Health");
+                if (healthField != null)
+                {
+                    return (float)healthField.GetValue(damageableComponent);
+                }
+            }
+            return 0f;
         }
     }
 
+    // Ova metoda se može pozvati izvana ako je potrebno
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
-        // DODAJ OVO ZA DEBUG:
-        Debug.Log($"Enemy health: {currentHealth}/{maxHealth}");
-
-        UpdateHealthBar();
-
-        if (currentHealth <= 0)
+        if (damageableComponent != null)
         {
-            OnEnemyDied();
+            var healthField = damageableComponent.GetType().GetField("Health");
+            if (healthField != null)
+            {
+                float currentHealthValue = (float)healthField.GetValue(damageableComponent);
+                currentHealthValue -= damage;
+                currentHealthValue = Mathf.Clamp(currentHealthValue, 0, maxHealth);
+
+                healthField.SetValue(damageableComponent, currentHealthValue);
+
+                // DODAJ OVO ZA DEBUG:
+                Debug.Log($"Enemy health: {currentHealthValue}/{maxHealth}");
+
+                UpdateHealthBar();
+
+                if (currentHealthValue <= 0 && !isDead)
+                {
+                    OnEnemyDied();
+                }
+            }
         }
     }
 
     void UpdateHealthBar()
     {
+        float currentHealth = CurrentHealth;
+
         if (healthSlider != null)
         {
             healthSlider.value = currentHealth / maxHealth;
@@ -74,6 +146,9 @@ public class EnemyHealthBar : MonoBehaviour
 
     void OnEnemyDied()
     {
+        if (isDead) return; // Sprečava višestruke pozive
+        isDead = true;
+
         Debug.Log("Enemy died!");
 
         // Spawn Key_A na poziciji enemy-ja
@@ -81,9 +156,7 @@ public class EnemyHealthBar : MonoBehaviour
         {
             Vector3 spawnPosition = transform.position;
             Quaternion spawnRotation = transform.rotation;
-
             GameObject spawnedKey = Instantiate(keyPrefab, spawnPosition, spawnRotation);
-
             Debug.Log("Key spawned at enemy position!");
         }
         else
@@ -95,7 +168,7 @@ public class EnemyHealthBar : MonoBehaviour
         if (destroyOnDeath)
         {
             // Kratka pauza da se vidi što se događa
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject, 5f);
         }
     }
 }
