@@ -3,12 +3,12 @@ using BNG;
 using UnityEngine.SceneManagement;
 public class TransitionScenes : MonoBehaviour
 {
-    public Transform player;                  // Drag your player here
+    public Transform player;
 
-    public float abductHeight = 50f;           // How high to pull the player
-    public float pullSpeed = 4f;              // Speed of lift
+    public float abductHeight = 50f;
+    public float pullSpeed = 4f;
 
-    public string sceneToLoad = "NextScene";  // Your next scene name
+    public string sceneToLoad = "NextScene";
 
     private bool abducting = false;
     private Vector3 targetPosition;
@@ -30,7 +30,7 @@ public class TransitionScenes : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            // Transition to the next scene using BNG
+
             SceneManager.LoadScene(sceneToLoad);
         }
     }
@@ -39,7 +39,7 @@ public class TransitionScenes : MonoBehaviour
     {
         Debug.Log("Start abduction");
 
-        // Pull player up smoothly
+
         while (Vector3.Distance(player.position, targetPosition) > 0.05f)
         {
             player.position = Vector3.MoveTowards(player.position, targetPosition, pullSpeed * Time.deltaTime);

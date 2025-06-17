@@ -4844,10 +4844,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxRange: 200
-  Damage: 25
+  Damage: 40
   FiringMethod: 0
   ReloadMethod: 0
-  FiringRate: 0.05
+  FiringRate: 0.5
   BulletImpactForce: 1000
   InternalAmmo: 0
   MaxInternalAmmo: 10

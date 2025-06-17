@@ -29,16 +29,7 @@ public class ArmUIManager : MonoBehaviour
         hpBar.UpdateBar(GameStats.PlayerHealth);
         shieldBar.UpdateBar(GameStats.PlayerShields);
 
-        /* if (Input.GetKeyDown(KeyCode.F))
-         {
-             TakeDamage(10);
-         }
 
-         if (Input.GetKeyDown(KeyCode.G))
-         {
-             Heal(10);
-         }
- */
     }
 
 
@@ -46,18 +37,5 @@ public class ArmUIManager : MonoBehaviour
     {
         GameStats.KeysFound += 1;
     }
-    /*
-        void TakeDamage(int amount)
-        {
-            GameStats.PlayerHealth -= amount;
-            GameStats.PlayerHealth = Mathf.Max(GameStats.PlayerHealth, 0);
-        }
 
-        void Heal(int amount)
-        {
-            GameStats.PlayerHealth += amount;
-            GameStats.PlayerHealth = Mathf.Min(GameStats.PlayerHealth, GameStats.MaxHealth);
-        }
-
-        */
 }

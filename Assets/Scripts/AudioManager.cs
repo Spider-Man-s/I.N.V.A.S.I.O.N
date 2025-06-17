@@ -33,13 +33,19 @@ public class AudioManager : MonoBehaviour
     private void InitializeTriggers()
     {
 
-        //  triggerActions["Boss1Dead"] = () => PlayMusic(1);
-        //  triggerActions["Boss2Dead"] = () => PlayMusic(2);
-        //  triggerActions["Boss3Dead"] = () => PlayMusic(3);
-        // triggerActions["Boss4Dead"] = () => PlayMusic(4);
+        triggerActions["Boss1"] = () => PlayMusic(0, true);
+        triggerActions["Boss2"] = () => PlayMusic(1, true);
+        triggerActions["Boss3"] = () => PlayMusic(2, true);
+        triggerActions["Boss4"] = () => PlayMusic(3, true);
+        triggerActions["BG1"] = () => PlayMusic(4, true);
+        triggerActions["BG2"] = () => PlayMusic(5, true);
+        triggerActions["BG3"] = () => PlayMusic(6, true);
+        triggerActions["BG4"] = () => PlayMusic(7, true);
+        triggerActions["Intro"] = () => PlayMusic(8, true);
+        triggerActions["End"] = () => PlayMusic(9, true);
 
         triggerActions["CallAnswered"] = () => PlayVoiceLine(0, false);
-        // triggerActions["VictoryVoice"] = () => PlayVoiceLine(1);
+
     }
 
     public void SetTrigger(string triggerName)

@@ -809,9 +809,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  hp: 10
-  score: 10
-  damageDealt: 50
+  hp: 100
+  score: 200
+  damageDealt: 10
   attackRange: 1.2
   enemyPrefab: {fileID: 1340068441400412128}
   canMove: 0
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6de38f13d6b1443b2c5a5a20ac08d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 0
+  Health: 100
   SelfDestruct: 0
   SelfDestructDelay: 0.1
   SpawnOnDeath: {fileID: 0}

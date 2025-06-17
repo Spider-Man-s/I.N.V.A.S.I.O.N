@@ -13360,7 +13360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxRange: 200
-  Damage: 25
+  Damage: 22
   FiringMethod: 0
   ReloadMethod: 0
   FiringRate: 0.05

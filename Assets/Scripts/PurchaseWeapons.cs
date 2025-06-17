@@ -25,29 +25,29 @@ public class PurchaseWeapons : MonoBehaviour
 
         if (upgradeLevel > weaponPrefabs.Length)
         {
-            // Equip a fresh instance of the weapon prefab
+
             int indexToEquip = Mathf.Clamp(GetUpgradeLevel() - 1, 0, weaponPrefabs.Length - 1);
 
             if (weaponEquipper != null && indexToEquip < weaponPrefabs.Length)
             {
                 GameObject weaponToEquip = weaponPrefabs[indexToEquip];
-                weaponEquipper.EquipWeaponPrefab(weaponToEquip); // pass the prefab, not instance
+                weaponEquipper.EquipWeaponPrefab(weaponToEquip);
             }
 
         }
 
-        // Check if the player has enough points
+
         if (GameStats.Score < price) return;
 
         GameStats.Score -= price;
 
-        // Equip the current vending weapon
+
         if (currentWeaponInstance != null && weaponEquipper != null)
         {
             weaponEquipper.EquipWeaponPrefab(currentWeaponInstance);
         }
 
-        // Increase upgrade level
+
         switch (weapon)
         {
             case "Revolver":
@@ -77,7 +77,7 @@ public class PurchaseWeapons : MonoBehaviour
 
         if (upgradeLevel <= weaponPrefabs.Length)
         {
-            // Destroy previous if exists
+
             if (currentWeaponInstance != null)
             {
                 Destroy(currentWeaponInstance);
@@ -96,7 +96,7 @@ public class PurchaseWeapons : MonoBehaviour
 
             }
 
-            // Set label
+
             if (upgradeLevel == 1)
             {
                 price = 1000;
@@ -112,10 +112,15 @@ public class PurchaseWeapons : MonoBehaviour
                 price = 3000;
                 label.text = "UPGRADE: <color=red>" + price + "</color>";
             }
+            else if (upgradeLevel == 4)
+            {
+                price = 4000;
+                label.text = "UPGRADE: <color=red>" + price + "</color>";
+            }
         }
         else
         {
-            // Already maxed
+
             label.text = "<color=green>MAXED OUT</color>";
             price = 0;
         }

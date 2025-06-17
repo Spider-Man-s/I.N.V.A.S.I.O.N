@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 7249018041254922278}
   - component: {fileID: -2030128691176785302}
   - component: {fileID: 2140558875621270671}
+  - component: {fileID: 7540589466110132955}
   m_Layer: 0
   m_Name: Boss2
   m_TagString: Untagged
@@ -223,9 +224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  hp: 750
-  score: 750
-  damageDealt: 50
+  hp: 1500
+  score: 1500
+  damageDealt: 10
   attackRange: 1.2
   enemyPrefab: {fileID: 1340068441400412128}
   canMove: 0
@@ -243,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6de38f13d6b1443b2c5a5a20ac08d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 750
+  Health: 1500
   SelfDestruct: 0
   SelfDestructDelay: 0.1
   SpawnOnDeath: {fileID: 0}
@@ -278,6 +279,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2723500311628632847}
         m_TargetAssemblyTypeName: RadnikEnemy, Assembly-CSharp
         m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7540589466110132955}
+        m_TargetAssemblyTypeName: TriggerCaller, Assembly-CSharp
+        m_MethodName: CallTrigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -342,7 +355,7 @@ MonoBehaviour:
   destroyOnDeath: 1
   healthSlider: {fileID: 9206298785968017105}
   fillImage: {fileID: 1359444944149048369}
-  maxHealth: 750
+  maxHealth: 1500
   healthyColor: {r: 0, g: 1, b: 0, a: 1}
   lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
   heightOffset: 2
@@ -360,6 +373,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: -2030128691176785302}
   damageableComponent: {fileID: 2777940445628970382}
+--- !u!114 &7540589466110132955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340068441400412128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7be1d03f7cd9745b3de6804aa1419a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerName: BG3
 --- !u!1 &2440093510994703124
 GameObject:
   m_ObjectHideFlags: 0
