@@ -6282,7 +6282,7 @@ MonoBehaviour:
   Damage: 27
   FiringMethod: 1
   ReloadMethod: 0
-  FiringRate: 0.7
+  FiringRate: 0.1
   BulletImpactForce: 1000
   InternalAmmo: 0
   MaxInternalAmmo: 32
